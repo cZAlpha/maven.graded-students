@@ -19,6 +19,6 @@ public class GetAverageExamScoreTest {
     public void test0() {
         //Arrange
         Double[] examScores = {100.0, 95.0, 123.0, 96.0};
-        test(examScores, null);
+        test(examScores, 103.5);
     }
 }
