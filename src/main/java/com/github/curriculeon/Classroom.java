@@ -63,11 +63,17 @@ public class Classroom {
     }
 
     public Student[] getStudentsByScore() {
-        Student[] returnArray = new Student[students.length];
-
-        // Implement populating the returnArray in ascending grade order
-
-        return returnArray;
+        for (int i = 0; i < students.length - 1; i++) {
+            for (int j = i + 1; j < students.length; j++) {
+                if (students[j].getAverageExamScore() > students[i].getAverageExamScore()) {
+                    // swap the two elements
+                    Student temp = students[i];
+                    students[i] = students[j];
+                    students[j] = temp;
+                }
+            }
+        }
+        return students;
     }
 
     public Map<Student, Character> getGradeBook() { // Student object, Character as a grade

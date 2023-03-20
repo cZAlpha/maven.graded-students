@@ -16,7 +16,7 @@ public class Student implements Comparable<Student> {
     public Student() { // Re-assignments of private vars to null due to this being the null constructor
         this.firstName  = null;
         this.lastName   = null;
-        this.testScores = null;
+        this.testScores = new Double[]{};
     }
 
     public String getFirstName() {
@@ -73,31 +73,6 @@ public class Student implements Comparable<Student> {
         return null;
     }
 
-    /**
-     * @param studentToCompareAgainst the object to be compared; compare by grade, then by name
-     * @return
-     */
-    @Override
-    public int compareTo(Student studentToCompareAgainst) {
-        // Implicity handling
-        Student implicitStudent = this; // This represents the person the method is being enacted on.
-        // Average score handling
-        Double  implicitScores = implicitStudent.getAverageExamScore(); // Gets the student's scores
-        Double  otherScores = studentToCompareAgainst.getAverageExamScore(); // Gets the other student's scores
-        // Name & lexographical analysis handling
-        String implicitName = this.getLastName();
-        String otherName    = studentToCompareAgainst.getLastName();
-        int    lexValue     = implicitName.compareTo(otherName);
-
-        if ( implicitScores > otherScores && lexValue < 0) {
-            return 1;
-        } else {
-            return -1;
-        }
-
-        //return Integer.valueOf(null);
-    }
-
     public Character getGrade(Double grade) {
         Character letterGrade = null;
         if ( grade >= 84 ) {
@@ -112,6 +87,19 @@ public class Student implements Comparable<Student> {
             letterGrade = 'F';
         }
         return letterGrade;
+    }
+
+    /**
+     * @param studentToCompareAgainst the object to be compared; compare by grade, then by name
+     * @return
+     */
+    @Override
+    public int compareTo(Student studentToCompareAgainst) { // THIS IS THE INSTRUCTOR'S IMPLEMENTATION --- DOES NOT PASS FOR SOME REASON
+        int lexValue = this.getAverageExamScore().compareTo(studentToCompareAgainst.getAverageExamScore()); // Compares their grades
+        if (lexValue == 0) {
+            lexValue = this.getLastName().compareTo(studentToCompareAgainst.getLastName()); // Compares last name if they have the same grades
+        }
+        return lexValue;
     }
 }
 
