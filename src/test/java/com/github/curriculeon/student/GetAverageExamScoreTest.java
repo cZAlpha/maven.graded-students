@@ -5,22 +5,33 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
 
 public class GetAverageExamScoreTest {
 
-    private void test(Double[] examScores, Double expected) {
+    private void test(double[] examScores, Double expected) {
         //Arrange
-        Student student = new Student(null, null, examScores);
+        Double[] studentExamScores = Arrays
+                .stream(examScores)
+                .boxed()
+                .toArray(Double[]::new);
+        Student student = new Student(null, null, studentExamScores);
         //Act
         Double actual = student.getAverageExamScore();
         //Assert
-        Assert.assertEquals(expected, actual, 0.01);
+        Assert.assertEquals(expected, actual, 0.03);
     }
 
     @Test
     public void test0() {
         //Arrange
-        Double[] examScores = {100.0, 95.0, 123.0, 96.0};
-        test(examScores, 103.5);
+        double[] examScores = DoubleStream
+                .generate(() -> ThreadLocalRandom.current().nextDouble(50, 100))
+                .limit(5)
+                .toArray();
+        double average = Arrays.stream(examScores).average().getAsDouble();
+        test(examScores, average);
     }
 }

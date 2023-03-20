@@ -5,31 +5,35 @@ import com.github.curriculeon.Student;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class NonNullaryConstructorTest {
     // given
     private void test(Student[] students) {
-        Student[] expected = {};
 
         // when
         Classroom testClassroom = new Classroom(students);
-        Student[] actual = testClassroom.getStudents();
-
-        // then
-        Assert.assertArrayEquals(expected, actual);
+        Student[] actualStudentsArray = testClassroom.getStudents();
+        List<Student> actualStudentsList = Arrays.asList(actualStudentsArray);
+        for(Student expectedStudent : students) {
+            // then
+            Assert.assertTrue(actualStudentsList.contains(expectedStudent));
+        }
     }
 
     @Test
-    public void test0(Student[] students) {
+    public void test0() {
         test(new Student[0]);
     }
 
     @Test
-    public void test1(Student[] students) {
+    public void test1() {
         test(new Student[1]);
     }
 
     @Test
-    public void test2(Student[] students) {
+    public void test2() {
         test(new Student[2]);
     }
 }

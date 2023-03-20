@@ -1,6 +1,7 @@
 package com.github.curriculeon;
 
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,22 +47,19 @@ public class Classroom {
     }
 
     public Boolean removeStudent(Student student) {
-        Boolean flag = false; // Flag to check if the student exists
-        Student[] updatedStudents = new Student[this.students.length - 1];
-        for ( int i = 0 ; i < students.length ; i++ ) {
-            if ( this.students[i].equals(student) ) { // Checks if the student exists
-                flag = true;
+        for (int i = 0; i < students.length; i++) {
+            if (students[i].equals(student)) {
+                // Remove student from array
+                for (int j = i; j < students.length - 1; j++) {
+                    students[j] = students[j + 1];
+                }
+                students[students.length - 1] = null;
+                // Update array length
+                students = Arrays.copyOf(students, students.length - 1);
+                return true;
             }
         }
-
-        // IMPLEMENT REMOVING THE STUDENT, THE CODE BELOW DOESN'T WORK
-        //for ( int i = 0 ; i < students.length ; i++ ) {
-        //    if ( !this.students[i].equals(student) ) {
-        //        updatedStudents[i] = this.students[i];
-        //    }
-        //}
-
-        return flag; // returns whether or not the student 1) exists and 2) was removed
+        return false;
     }
 
     public Student[] getStudentsByScore() {
@@ -72,11 +70,11 @@ public class Classroom {
         return returnArray;
     }
 
-    public Map<Student, Double> getGradeBook() {
-        Map<Student, Double> gradeBook = new HashMap<>(); // Init. gradebook map
+    public Map<Student, Character> getGradeBook() { // Student object, Character as a grade
+        Map<Student, Character> gradeBook = new HashMap<>(); // Init. gradebook map
 
         for ( int i = 0 ; i < students.length ; i++ ){ // Loops thru students in the class
-            gradeBook.put(students[i], students[i].getAverageExamScore()); // Populates the hashmap based on the array of students
+            gradeBook.put(students[i], students[i].getGrade(students[i].getAverageExamScore())); // Populates the hashmap based on the array of students
         }
         return gradeBook;
     }
@@ -84,6 +82,7 @@ public class Classroom {
     public int classSize(){
         return this.students.length;
     }
+
 
 }
 

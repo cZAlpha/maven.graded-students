@@ -34,9 +34,14 @@ This method should remove the specified `Student` object from the `Classroom` ob
 
 This method should return an array of all the `Student` objects in the `Classroom` object, sorted in descending order by their average exam score.
 
-### `public Map<Student, Double> getGradeBook()`
+### `public Map<Student, Character> getGradeBook()`
 
-This method should return a map that associates each `Student` object in the `Classroom` object with their average exam score.
+* The class `Classroom` should define a method `getGradeBook()` which returns a mapping of `Student` objects to a respective letter grade determined by creating a [grading curve](https://en.wikipedia.org/wiki/Grading_on_a_curve) such that
+  * An `A` is awarded to students whose class average is in the upper 10th percentile.
+  * A `B` is awarded to students whose class average falls between the 11th and 29th percentile.
+  * A `C` is awarded to students whose class average falls between the 30th and 50th percentile.
+  * A `D` is awarded to students whose class average falls between the 51st and 89th percentile.
+  * An `F` is awarded to students whose class average is in the lower 10th percentile.
 
 ## `Student` Class
 

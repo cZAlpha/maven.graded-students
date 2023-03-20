@@ -97,5 +97,21 @@ public class Student implements Comparable<Student> {
 
         //return Integer.valueOf(null);
     }
+
+    public Character getGrade(Double grade) {
+        Character letterGrade = null;
+        if ( grade >= 84 ) {
+            letterGrade = 'A';
+        } else if ( grade < 84 && grade > 71) {
+            letterGrade = 'B';
+        } else if ( grade < 70 && grade > 56) {
+            letterGrade = 'C';
+        } else if ( grade <= 55 && grade > 46) {
+            letterGrade = 'D';
+        } else {
+            letterGrade = 'F';
+        }
+        return letterGrade;
+    }
 }
 

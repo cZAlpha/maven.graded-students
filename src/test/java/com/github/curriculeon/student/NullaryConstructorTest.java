@@ -20,7 +20,7 @@ public class NullaryConstructorTest {
         Assert.assertTrue(isCorrectType);
         Assert.assertEquals(null, actualFirstName);
         Assert.assertEquals(null, actualLastName);
-        Assert.assertArrayEquals(null, actualExamScores);
+        Assert.assertArrayEquals(new Double[]{}, actualExamScores);
     }
 
 }
