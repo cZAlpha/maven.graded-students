@@ -48,10 +48,15 @@ public class Student implements Comparable<Student> {
         this.testScores = updatedScores; // Updates the scores to the internal array
     }
 
-
-    public void setExamScore(int examNum, double updateScore) {
+    public void setExamScore(int examNum, double updateScore) { // THERE IS NO TEST FOR THIS METHOD
+        if ( examNum > 0 && examNum < testScores.length && updateScore > 0.0 && updateScore < 150.0 ) {
+            testScores[examNum] = updateScore;
+        } else if ( examNum < 0 || examNum > testScores.length ) {
+            throw new IllegalArgumentException("The inputted test does not exist.");
+        } else if ( updateScore < 0.0 || updateScore > 150.0) {
+            throw new IllegalArgumentException("The inputted test score is not valid.");
+        }
     }
-
 
     public Double getAverageExamScore() {
         Double summationVar = 0.0;
@@ -74,12 +79,20 @@ public class Student implements Comparable<Student> {
      */
     @Override
     public int compareTo(Student studentToCompareAgainst) {
+        // Implicity handling
         Student implicitStudent = this; // This represents the person the method is being enacted on.
-        Double  implicitScores = implicitStudent.getAverageExamScore(); // Gets the student's scores
 
+        // Average score handling
+        Double  implicitScores = implicitStudent.getAverageExamScore(); // Gets the student's scores
         Double  otherScores = studentToCompareAgainst.getAverageExamScore(); // Gets the other student's scores
 
-        if ( implicitScores > otherScores ) {
+        // Name & lexographical analysis handling
+        String implicitName = this.getFirstName();
+        String otherName    = studentToCompareAgainst.getFirstName();
+        int    lexValue     = implicitName.compareTo(otherName);
+
+
+        if ( implicitScores > otherScores && lexValue < 0) {
             return 1;
         } else {
             return -1;
