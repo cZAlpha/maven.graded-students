@@ -81,16 +81,13 @@ public class Student implements Comparable<Student> {
     public int compareTo(Student studentToCompareAgainst) {
         // Implicity handling
         Student implicitStudent = this; // This represents the person the method is being enacted on.
-
         // Average score handling
         Double  implicitScores = implicitStudent.getAverageExamScore(); // Gets the student's scores
         Double  otherScores = studentToCompareAgainst.getAverageExamScore(); // Gets the other student's scores
-
         // Name & lexographical analysis handling
-        String implicitName = this.getFirstName();
-        String otherName    = studentToCompareAgainst.getFirstName();
+        String implicitName = this.getLastName();
+        String otherName    = studentToCompareAgainst.getLastName();
         int    lexValue     = implicitName.compareTo(otherName);
-
 
         if ( implicitScores > otherScores && lexValue < 0) {
             return 1;

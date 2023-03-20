@@ -78,7 +78,6 @@ public class Classroom {
         for ( int i = 0 ; i < students.length ; i++ ){ // Loops thru students in the class
             gradeBook.put(students[i], students[i].getAverageExamScore()); // Populates the hashmap based on the array of students
         }
-
         return gradeBook;
     }
 
