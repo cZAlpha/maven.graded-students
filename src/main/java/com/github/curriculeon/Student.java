@@ -55,7 +55,7 @@ public class Student implements Comparable<Student> {
 
     public Double getAverageExamScore() {
         Double summationVar = 0.0;
-        Double returnVar    = 0.0;
+        Double returnVar;
         for ( int i = 0 ; i < getExamScores().length ; i++ ) {
             summationVar += getExamScores()[i];
         }
@@ -74,9 +74,18 @@ public class Student implements Comparable<Student> {
      */
     @Override
     public int compareTo(Student studentToCompareAgainst) {
+        Student implicitStudent = this; // This represents the person the method is being enacted on.
+        Double  implicitScores = implicitStudent.getAverageExamScore(); // Gets the student's scores
 
+        Double  otherScores = studentToCompareAgainst.getAverageExamScore(); // Gets the other student's scores
 
-        return Integer.valueOf(null);
+        if ( implicitScores > otherScores ) {
+            return 1;
+        } else {
+            return -1;
+        }
+
+        //return Integer.valueOf(null);
     }
 }
 

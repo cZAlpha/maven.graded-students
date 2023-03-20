@@ -4,6 +4,8 @@ import com.github.curriculeon.Student;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 public class GetAverageExamScoreTest {
 
     private void test(Double[] examScores, Double expected) {
