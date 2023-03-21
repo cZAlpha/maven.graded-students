@@ -74,7 +74,7 @@ public class Student implements Comparable<Student> {
     }
 
     public Character getGrade(Double grade) {
-        Character letterGrade = null;
+        Character letterGrade;
         if ( grade >= 84 ) {
             letterGrade = 'A';
         } else if ( grade < 84 && grade > 71) {

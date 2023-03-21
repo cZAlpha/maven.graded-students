@@ -80,7 +80,8 @@ public class Classroom {
         Map<Student, Character> gradeBook = new HashMap<>(); // Init. gradebook map
 
         for ( int i = 0 ; i < students.length ; i++ ){ // Loops thru students in the class
-            gradeBook.put(students[i], students[i].getGrade(students[i].getAverageExamScore())); // Populates the hashmap based on the array of students
+            gradeBook.put(students[i],
+                    students[i].getGrade(students[i].getAverageExamScore())); // Populates the hashmap based on the array of students
         }
         return gradeBook;
     }
