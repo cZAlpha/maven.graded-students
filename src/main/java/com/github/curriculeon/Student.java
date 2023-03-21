@@ -59,8 +59,7 @@ public class Student implements Comparable<Student> {
     }
 
     public Double getAverageExamScore() {
-        Double summationVar = 0.0;
-        Double returnVar;
+        Double summationVar = 0.0, returnVar;
         for ( int i = 0 ; i < getExamScores().length ; i++ ) {
             summationVar += getExamScores()[i];
         }
@@ -94,12 +93,13 @@ public class Student implements Comparable<Student> {
      * @return
      */
     @Override
-    public int compareTo(Student studentToCompareAgainst) { // THIS IS THE INSTRUCTOR'S IMPLEMENTATION --- DOES NOT PASS FOR SOME REASON
-        int lexValue = this.getAverageExamScore().compareTo(studentToCompareAgainst.getAverageExamScore()); // Compares their grades
-        if (lexValue == 0) {
-            lexValue = this.getLastName().compareTo(studentToCompareAgainst.getLastName()); // Compares last name if they have the same grades
-        }
-        return lexValue;
+    public int compareTo(Student studentToCompareAgainst) {
+        Double comparisonScore = studentToCompareAgainst.getAverageExamScore();
+        Double average = getAverageExamScore();
+        int compare = comparisonScore.compareTo(average);
+        if(compare == 0)
+            return this.getLastName().compareTo(studentToCompareAgainst.getLastName());
+        return compare;
     }
 }
 

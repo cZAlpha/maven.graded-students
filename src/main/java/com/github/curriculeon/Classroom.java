@@ -27,8 +27,7 @@ public class Classroom {
     }
 
     public Double getAverageExamScore() {
-        Double summationVar = 0.0;
-        Double returnVar;
+        Double summationVar = 0.0 , returnVar;
         for ( int i = 0 ; i < classSize() ; i++ ) {
             summationVar += students[i].getAverageExamScore();
             }
