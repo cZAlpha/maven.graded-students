@@ -3,6 +3,7 @@ package com.github.curriculeon;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Classroom {
@@ -62,17 +63,11 @@ public class Classroom {
     }
 
     public Student[] getStudentsByScore() {
-        for (int i = 0; i < students.length - 1; i++) {
-            for (int j = i + 1; j < students.length; j++) {
-                if (students[j].getAverageExamScore() > students[i].getAverageExamScore()) {
-                    // swap the two elements
-                    Student temp = students[i];
-                    students[i] = students[j];
-                    students[j] = temp;
-                }
-            }
-        }
-        return students;
+        return Arrays
+                .asList(students)
+                .stream()
+                .sorted()
+                .toArray(Student[]::new);
     }
 
     public Map<Student, Character> getGradeBook() { // Student object, Character as a grade
